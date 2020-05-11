@@ -45,7 +45,10 @@ const deleteDeck = async (id) => {
       if (decks[id]) {
         delete decks[id];
 
-        await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(decks));
+        return await AsyncStorage.setItem(
+          DECK_SORAGE_KEY,
+          JSON.stringify(decks)
+        );
       }
     })
     .catch((error) => {
