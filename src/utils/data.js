@@ -2,25 +2,45 @@ import { AsyncStorage } from "react-native";
 
 const DECK_SORAGE_KEY = "@MobileFlashCards:decks";
 
-const getAllDecks = () => {
+const getAllDecks = async () => {
   return await AsyncStorage.getItem(DECK_SORAGE_KEY)
     .then((decks) => {
-      if(decks !== null) {
+      if (decks !== null) {
         return JSON.parse(decks);
       } else {
         return {};
       }
-    }).catch((error) => {
+    })
+    .catch((error) => {
       return error;
     });
 };
 
-const getDeck = () => {};
+const getDeck = async (id) => {
+  return await getAllDecks()
+    .then((decks) => {
+      return decks[id];
+    })
+    .catch((error) => {
+      return error;
+    });
+};
 
-const addDeck = () => {};
+const addDeck = async (title) => {
+  const id = title.trim();
+  const newDeck = {
+    title,
+    questions: [],
+  };
 
-const deleteDeck = () => {};
+  return await AsyncStorage.mergeItem(
+    DECK_SORAGE_KEY,
+    JSON.stringify({ [id]: newDeck })
+  );
+};
 
-const addCardToDeck = () => {};
+const deleteDeck = async () => {};
+
+const addCardToDeck = async () => {};
 
 export { getAllDecks, getDeck, addDeck, deleteDeck, addCardToDeck };
