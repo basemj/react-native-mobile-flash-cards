@@ -39,7 +39,19 @@ const addDeck = async (title) => {
   );
 };
 
-const deleteDeck = async () => {};
+const deleteDeck = async (id) => {
+  return await getAllDecks()
+    .then(async (decks) => {
+      if (decks[id]) {
+        delete decks[id];
+
+        await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(decks));
+      }
+    })
+    .catch((error) => {
+      return error;
+    });
+};
 
 const addCardToDeck = async () => {};
 
