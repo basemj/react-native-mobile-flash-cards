@@ -1,21 +1,27 @@
+import "react-native-gesture-handler";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { StatusBar } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-export default function App() {
+import DeckStackNav from "./src/nav/DeckStackNav";
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar />
-      <Text>Open up App.js to start working on your app?</Text>
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <DeckStackNav />
+        </NavigationContainer>
+      </View>
+    </SafeAreaProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#bada55",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
+
+export default App;
