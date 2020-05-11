@@ -17,18 +17,15 @@ const getAllDecks = async () => {
 };
 
 const getDeck = async (id) => {
-  return await getAllDecks()
-    .then((decks) => {
-      return decks[id];
-    })
-    .catch((error) => {
-      return error;
-    });
+  const decks = await getAllDecks();
+
+  return decks[id];
 };
 
 const addDeck = async (title) => {
   const id = title.trim();
   const newDeck = {
+    id,
     title,
     questions: [],
   };
@@ -40,22 +37,30 @@ const addDeck = async (title) => {
 };
 
 const deleteDeck = async (id) => {
-  return await getAllDecks()
-    .then(async (decks) => {
-      if (decks[id]) {
-        delete decks[id];
+  const decks = await getAllDecks();
+  if (decks[id]) {
+    delete decks[id];
 
-        return await AsyncStorage.setItem(
-          DECK_SORAGE_KEY,
-          JSON.stringify(decks)
-        );
-      }
-    })
-    .catch((error) => {
-      return error;
-    });
+    await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(decks));
+  }
 };
 
-const addCardToDeck = async () => {};
+const addCardToDeck = async (deckId, questionSet) => {
+  const decks = await getAllDecks();
+
+  if (decks[deckId]) {
+    const updatedDeck = {
+      ...decks[deckId],
+      questions: [...decks[deckId].questions, questionSet],
+    };
+
+    const updatedDecks = {
+      ...decks,
+      updatedDeck,
+    };
+
+    await AsyncStorage.setItem(DECK_SORAGE_KEY, updatedDecks);
+  }
+};
 
 export { getAllDecks, getDeck, addDeck, deleteDeck, addCardToDeck };
