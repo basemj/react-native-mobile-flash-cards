@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import DeckListScreen from "../screens/DeckListScreen";
 import AddNewDeckScreen from "../screens/AddNewDeckScreen";
+import { Platform } from "react-native";
 
 const Tab = createBottomTabNavigator();
 

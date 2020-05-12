@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text, Platform } from "react-native";
 import { connect } from "react-redux";
 import {
   Container,
