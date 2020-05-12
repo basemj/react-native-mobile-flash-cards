@@ -1,28 +1,8 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import Deck from "../components/Deck";
 
 const DeckScreen = ({ route, navigation }) => {
-  return (
-    <View>
-      <Text>Deck Screen: {route.params.deck.title}</Text>
-      <Button
-        title="Start Quiz"
-        onPress={() =>
-          navigation.navigate("QuizScreen", {
-            lala: "Quiz #1",
-          })
-        }
-      />
-      <Button
-        title="Add Card"
-        onPress={() =>
-          navigation.navigate("AddNewCardScreen", {
-            lala: "add card to deck #1",
-          })
-        }
-      />
-    </View>
-  );
+  return <Deck deck={route.params.deck} navigation={navigation} />;
 };
 
 export default DeckScreen;
