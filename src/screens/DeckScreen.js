@@ -4,7 +4,7 @@ import { Text, View, Button } from "react-native";
 const DeckScreen = ({ route, navigation }) => {
   return (
     <View>
-      <Text>Deck Screen: {route.params.lala}</Text>
+      <Text>Deck Screen: {route.params.deck.title}</Text>
       <Button
         title="Start Quiz"
         onPress={() =>
