@@ -3,7 +3,7 @@ import { AsyncStorage } from "react-native";
 const DECK_SORAGE_KEY = "@MobileFlashCards:decks";
 
 const _addCardToDeck = async (deckId, questionSet) => {
-  const decks = await getAllDecks();
+  const decks = await _getAllDecks();
 
   if (decks[deckId]) {
     const updatedDeck = {
@@ -37,7 +37,8 @@ const _addDeck = async (title) => {
 };
 
 const _deleteDeck = async (deckId) => {
-  const decks = await getAllDecks();
+  const decks = await _getAllDecks();
+
   if (decks[deckId]) {
     delete decks[deckId];
 
@@ -62,7 +63,7 @@ const _getAllDecks = async () => {
 };
 
 const _getDeck = async (deckId) => {
-  const decks = await getAllDecks();
+  const decks = await _getAllDecks();
 
   return decks[deckId];
 };
