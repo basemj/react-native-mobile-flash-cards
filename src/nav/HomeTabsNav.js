@@ -24,7 +24,7 @@ const DeckTabsScreen = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: "tomato",
+        activeTintColor: Platform.OS === "ios" ? "#007aff" : "blue",
         inactiveTintColor: "gray",
       }}
     >
