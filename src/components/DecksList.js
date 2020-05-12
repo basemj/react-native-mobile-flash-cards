@@ -2,18 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleGetAllDecks } from "../actions/decks";
 import { Text, Platform } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import {
-  Content,
-  List,
-  ListItem,
-  Body,
-  Right,
-  Icon,
-  Container,
-  Header,
-  Title,
-} from "native-base";
+import { Content, List, Body, Container, Header } from "native-base";
+
+import DeckListItem from "./DeckListItem";
 
 class DecksList extends Component {
   componentDidMount() {
@@ -40,26 +31,7 @@ class DecksList extends Component {
         <Content>
           <List>
             {decksArray.map((deck) => (
-              <TouchableOpacity
-                key={deck.id}
-                onPress={() =>
-                  navigation.navigate("DeckScreen", {
-                    deck,
-                  })
-                }
-              >
-                <ListItem>
-                  <Body>
-                    <Text style={{ fontSize: 18 }}>{deck.title}</Text>
-                    <Text style={{ fontSize: 12, color: "grey", marginTop: 5 }}>
-                      {deck.questions.length} Cards
-                    </Text>
-                  </Body>
-                  <Right>
-                    <Icon name="arrow-forward" />
-                  </Right>
-                </ListItem>
-              </TouchableOpacity>
+              <DeckListItem key={deck.id} deck={deck} navigation={navigation} />
             ))}
           </List>
         </Content>
