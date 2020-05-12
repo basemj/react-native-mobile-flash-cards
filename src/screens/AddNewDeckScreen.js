@@ -1,12 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
 
 import CustomSafeAreaView from "../helpers/CustomSafeAreaView";
+import AddNewDeck from "../components/AddNewDeck";
 
-const AddNewDeckScreen = () => {
+const AddNewDeckScreen = ({ navigation }) => {
   return (
     <CustomSafeAreaView>
-      <Text>Add new deck</Text>
+      <AddNewDeck navigation={navigation} />
     </CustomSafeAreaView>
   );
 };
