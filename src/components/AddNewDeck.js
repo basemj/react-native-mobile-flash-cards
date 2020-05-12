@@ -67,7 +67,7 @@ class AddNewDeck extends Component {
             style={{ margin: 30, justifyContent: "center" }}
             onPress={this.handlePress}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>Create</Text>
+            <Text style={{ color: "white", fontSize: 18 }}>Create Deck</Text>
           </Button>
         </Content>
       </Container>
