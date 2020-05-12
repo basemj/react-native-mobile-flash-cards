@@ -1,6 +1,6 @@
 import React from "react";
 import { useSafeArea } from "react-native-safe-area-context";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
 
 const CustomSafeAreaView = (props) => {
   const safeAreaInsets = useSafeArea();
@@ -9,10 +9,10 @@ const CustomSafeAreaView = (props) => {
     <View
       style={{
         flex: 1,
-        paddingTop: safeAreaInsets.top,
-        paddingBottom: safeAreaInsets.bottom,
-        paddingLeft: safeAreaInsets.left,
-        paddingRight: safeAreaInsets.right,
+        paddingTop: Platform.OS === "ios" ? 0 : safeAreaInsets.top,
+        paddingBottom: Platform.OS === "ios" ? 0 : safeAreaInsets.bottom,
+        paddingLeft: Platform.OS === "ios" ? 0 : safeAreaInsets.left,
+        paddingRight: Platform.OS === "ios" ? 0 : safeAreaInsets.right,
       }}
     >
       {props.children}
