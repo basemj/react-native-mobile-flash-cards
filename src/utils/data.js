@@ -2,7 +2,7 @@ import { AsyncStorage } from "react-native";
 
 const DECK_SORAGE_KEY = "@MobileFlashCards:decks";
 
-const addCardToDeck = async (deckId, questionSet) => {
+const _addCardToDeck = async (deckId, questionSet) => {
   const decks = await getAllDecks();
 
   if (decks[deckId]) {
@@ -13,21 +13,16 @@ const addCardToDeck = async (deckId, questionSet) => {
 
     const updatedDecks = {
       ...decks,
-      updatedDeck,
+      [deckId]: updatedDeck,
     };
 
     await AsyncStorage.setItem(DECK_SORAGE_KEY, updatedDecks);
-
-    return {
-      deckId,
-      questionSet,
-    };
   } else {
     throw "You cannot add to a deck that does not exist.";
   }
 };
 
-const addDeck = async (title) => {
+const _addDeck = async (title) => {
   const id = title.trim();
   const newDeck = {
     id,
@@ -41,16 +36,18 @@ const addDeck = async (title) => {
   );
 };
 
-const deleteDeck = async (id) => {
+const _deleteDeck = async (deckId) => {
   const decks = await getAllDecks();
-  if (decks[id]) {
-    delete decks[id];
+  if (decks[deckId]) {
+    delete decks[deckId];
 
     await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(decks));
+  } else {
+    throw "Cannot find deck to delete.";
   }
 };
 
-const getAllDecks = async () => {
+const _getAllDecks = async () => {
   return await AsyncStorage.getItem(DECK_SORAGE_KEY)
     .then((decks) => {
       if (decks !== null) {
@@ -64,10 +61,10 @@ const getAllDecks = async () => {
     });
 };
 
-const getDeck = async (id) => {
+const _getDeck = async (deckId) => {
   const decks = await getAllDecks();
 
-  return decks[id];
+  return decks[deckId];
 };
 
-export { addCardToDeck, addDeck, deleteDeck, getAllDecks, getDeck };
+export { _addCardToDeck, _addDeck, _deleteDeck, _getAllDecks, _getDeck };
