@@ -42,7 +42,7 @@ const handleAddDeck = (title) => {
 
 const addDeck = (title) => {
   return {
-    key: ADD_DECK,
+    type: ADD_DECK,
     title,
   };
 };
@@ -68,7 +68,7 @@ const deleteDeck = (deckId) => {
 
 const handleGetAllDecks = () => {
   return (dispatch) => {
-    _getAllDecks()
+    return _getAllDecks()
       .then((decks) => dispatch(getAllDecks(decks)))
       .catch((error) => {
         return error;
@@ -93,7 +93,7 @@ const handleGetDeck = (deckId) => {
 
 const getDeck = (deckId) => {
   return {
-    key: GET_DECK,
+    type: GET_DECK,
     deckId,
   };
 };
