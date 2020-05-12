@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleGetAllDecks } from "../actions/decks";
-import { Text } from "react-native";
-import { Content, List, ListItem, Body, Right, Icon } from "native-base";
+import { Text, Platform } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  Content,
+  List,
+  ListItem,
+  Body,
+  Right,
+  Icon,
+  Container,
+  Header,
+  Title,
+} from "native-base";
 
 class DecksList extends Component {
   componentDidMount() {
@@ -14,37 +24,51 @@ class DecksList extends Component {
   render() {
     const { decksArray, navigation } = this.props;
     return (
-      <Content>
-        <List>
-          {decksArray.map((deck) => (
-            <TouchableOpacity
-              key={deck.id}
-              onPress={() =>
-                navigation.navigate("DeckScreen", {
-                  deck,
-                })
-              }
+      <Container>
+        <Header>
+          <Body>
+            <Text
+              style={{
+                fontSize: 20,
+                color: Platform.OS === "ios" ? "#007aff" : "white",
+              }}
             >
-              <ListItem>
-                <Body>
-                  <Text style={{ fontSize: 18 }}>{deck.title}</Text>
-                  <Text style={{ fontSize: 12, color: "grey", marginTop: 5 }}>
-                    {deck.questions.length} Cards
-                  </Text>
-                </Body>
-                <Right>
-                  <Icon name="arrow-forward" />
-                </Right>
-              </ListItem>
-            </TouchableOpacity>
-          ))}
-        </List>
-      </Content>
+              Decks
+            </Text>
+          </Body>
+        </Header>
+        <Content>
+          <List>
+            {decksArray.map((deck) => (
+              <TouchableOpacity
+                key={deck.id}
+                onPress={() =>
+                  navigation.navigate("DeckScreen", {
+                    deck,
+                  })
+                }
+              >
+                <ListItem>
+                  <Body>
+                    <Text style={{ fontSize: 18 }}>{deck.title}</Text>
+                    <Text style={{ fontSize: 12, color: "grey", marginTop: 5 }}>
+                      {deck.questions.length} Cards
+                    </Text>
+                  </Body>
+                  <Right>
+                    <Icon name="arrow-forward" />
+                  </Right>
+                </ListItem>
+              </TouchableOpacity>
+            ))}
+          </List>
+        </Content>
+      </Container>
     );
   }
 }
 
-const mapStateToProps = ({ decks }, ownProps) => {
+const mapStateToProps = ({ decks }) => {
   const decksArray = Object.keys(decks).map((deck) => decks[deck]);
   return {
     decksArray,
