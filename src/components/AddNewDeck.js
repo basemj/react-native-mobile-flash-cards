@@ -30,9 +30,9 @@ class AddNewDeck extends Component {
     });
   };
 
-  handleChange = (e) => {
+  handleChange = (title) => {
     this.setState({
-      title: e,
+      title,
     });
   };
 
