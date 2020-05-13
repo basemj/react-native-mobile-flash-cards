@@ -1,4 +1,4 @@
-# Project Title
+# React Native Mobile Flash Cards
 
 This is a flashcards app which allows the user to practice questions daily organised in decks for different subjects.
 
