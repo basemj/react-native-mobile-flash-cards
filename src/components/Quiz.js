@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Text, Platform, View, StyleSheet } from "react-native";
 import { Content, Button } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   buttonText: { color: "white", fontSize: 18 },
 });
 
-class Quiz extends Component {
+class Quiz extends PureComponent {
   state = initialState;
 
   toggleAnswer = () => {
