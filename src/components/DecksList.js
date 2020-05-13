@@ -31,11 +31,28 @@ class DecksList extends Component {
           </Body>
         </Header>
         <Content>
-          <List>
-            {decksArray.map((deck) => (
-              <DeckListItem key={deck.id} deck={deck} navigation={navigation} />
-            ))}
-          </List>
+          {decksArray.length ? (
+            <List>
+              {decksArray.map((deck) => (
+                <DeckListItem
+                  key={deck.id}
+                  deck={deck}
+                  navigation={navigation}
+                />
+              ))}
+            </List>
+          ) : (
+            <Text
+              style={{
+                fontSize: 16,
+                textAlign: "center",
+                color: "grey",
+                marginTop: 25,
+              }}
+            >
+              No decks to display
+            </Text>
+          )}
         </Content>
       </Container>
     );
