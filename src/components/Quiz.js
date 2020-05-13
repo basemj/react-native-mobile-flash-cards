@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Text, Platform, View } from "react-native";
 import { Content, Button } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from "../helpers/notifications";
 
 const initialState = {
   activeCard: 0,
@@ -36,6 +40,8 @@ class Quiz extends Component {
         numberOfQuestions: questions.length,
         deckId,
       };
+
+      clearLocalNotification().then(setLocalNotification);
       navigation.navigate("QuizResultsScreen", resultParams);
       this.setState(initialState);
     }

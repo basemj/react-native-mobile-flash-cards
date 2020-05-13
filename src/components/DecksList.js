@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import { handleGetAllDecks } from "../actions/decks";
 import { Text, Platform } from "react-native";
 import { Content, List, Body, Container, Header } from "native-base";
+import { setLocalNotification } from "../helpers/notifications";
 
 import DeckListItem from "./DeckListItem";
 
 class DecksList extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
+    setLocalNotification();
     dispatch(handleGetAllDecks());
   }
 
