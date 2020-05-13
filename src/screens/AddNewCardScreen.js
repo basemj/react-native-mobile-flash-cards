@@ -1,12 +1,8 @@
 import React from "react";
-import { Text, View } from "react-native";
+import AddNewCard from "../components/AddNewCard";
 
-const AddNewCardScreen = ({ route }) => {
-  return (
-    <View>
-      <Text>New card: {route.params.lala}</Text>
-    </View>
-  );
+const AddNewCardScreen = ({ route, navigation }) => {
+  return <AddNewCard deckId={route.params.deckId} navigation={navigation} />;
 };
 
 export default AddNewCardScreen;

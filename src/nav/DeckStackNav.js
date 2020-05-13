@@ -23,7 +23,7 @@ const DeckStackScreen = () => {
       <DeckStack.Screen
         name="DeckScreen"
         component={DeckScreen}
-        options={({ route }) => ({ title: route.params.deck.title })}
+        options={({ route }) => ({ title: route.params.deckTitle })}
       />
       <DeckStack.Screen
         name="AddNewCardScreen"

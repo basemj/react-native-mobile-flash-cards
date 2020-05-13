@@ -1,18 +1,22 @@
 import React from "react";
-import { Text, View, Alert } from "react-native";
+import { Text, View, Alert, Platform } from "react-native";
 import { Button, Content } from "native-base";
 import { connect } from "react-redux";
 
 import { handleDeleteDeck } from "../actions/decks";
 
 const Deck = (props) => {
-  const { deck, navigation, dispatch } = props;
+  const { deckId, deck, navigation, dispatch } = props;
+
+  if (!deck) {
+    navigation.navigate("DeckListScreen");
+    return null;
+  }
+
   const numberOfCards = deck.questions.length || 0;
 
   const deleteDeck = () => {
-    dispatch(handleDeleteDeck(deck.id)).then(() => {
-      navigation.navigate("DeckListScreen");
-    });
+    dispatch(handleDeleteDeck(deckId));
   };
 
   const confirmDelete = () => {
@@ -51,6 +55,7 @@ const Deck = (props) => {
           style={{ margin: 30, justifyContent: "center" }}
           onPress={() =>
             navigation.navigate("QuizScreen", {
+              deckId,
               questions: deck.questions,
             })
           }
@@ -62,7 +67,7 @@ const Deck = (props) => {
           style={{ margin: 30, justifyContent: "center" }}
           onPress={() =>
             navigation.navigate("AddNewCardScreen", {
-              deckId: deck.id,
+              deckId,
             })
           }
         >
@@ -75,7 +80,7 @@ const Deck = (props) => {
             marginBottom: 30,
             justifyContent: "center",
           }}
-          onPress={confirmDelete}
+          onPress={Platform.OS === "web" ? deleteDeck : confirmDelete}
         >
           <Text style={{ color: "white", fontSize: 18 }}>Delete Deck</Text>
         </Button>
@@ -84,4 +89,12 @@ const Deck = (props) => {
   );
 };
 
-export default connect()(Deck);
+const mapStateToProps = ({ decks }, { deckId }) => {
+  const deck = decks[deckId];
+
+  return {
+    deck,
+  };
+};
+
+export default connect(mapStateToProps)(Deck);

@@ -11,7 +11,8 @@ const DeckListItem = (props) => {
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("DeckScreen", {
-          deck,
+          deckId: deck.id,
+          deckTitle: deck.title,
         })
       }
     >
