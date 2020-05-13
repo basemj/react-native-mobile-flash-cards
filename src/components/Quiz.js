@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, Platform, View } from "react-native";
+import { Text, Platform, View, StyleSheet } from "react-native";
 import { Content, Button } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {
@@ -51,69 +51,70 @@ class Quiz extends Component {
     const { questions } = this.props;
     const numberOfQuestions = (questions && questions.length) || 0;
     const { activeCard, showAnswer } = this.state;
+
+    const styles = StyleSheet.create({
+      view: { flex: 1 },
+      content: { padding: 15 },
+      topSection: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 15,
+      },
+      info: {
+        color: "grey",
+        marginTop: 5,
+      },
+      answerToggle: {
+        color: Platform.OS === "ios" ? "#007aff" : "blue",
+        marginTop: 5,
+      },
+      questionText: { fontSize: 40, textAlign: "center" },
+      buttonsWrapper: {
+        justifyContent: "flex-end",
+        maxHeight: 160,
+        marginBottom: 15,
+      },
+      button: {
+        marginVertical: 15,
+        marginHorizontal: 30,
+        justifyContent: "center",
+      },
+      buttonText: { color: "white", fontSize: 18 },
+    });
+
     return (
-      <View style={{ flex: 1 }}>
-        <Content style={{ padding: 15 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: 15,
-            }}
-          >
-            <Text
-              style={{
-                color: "grey",
-                marginTop: 5,
-              }}
-            >
+      <View style={styles.view}>
+        <Content style={styles.content}>
+          <View style={styles.topSection}>
+            <Text style={styles.info}>
               Question {activeCard + 1} of {numberOfQuestions}
             </Text>
             <TouchableOpacity onPress={this.toggleAnswer}>
-              <Text
-                style={{
-                  color: Platform.OS === "ios" ? "#007aff" : "blue",
-                  marginTop: 5,
-                }}
-              >
+              <Text style={styles.answerToggle}>
                 Show {showAnswer ? "Question" : "Answer"}
               </Text>
             </TouchableOpacity>
           </View>
-          <Text style={{ fontSize: 40, textAlign: "center" }}>
+          <Text style={styles.questionText}>
             {showAnswer
               ? questions[activeCard].answer
               : questions[activeCard].question}
           </Text>
         </Content>
-        <View
-          style={{
-            justifyContent: "flex-end",
-            maxHeight: 160,
-            marginBottom: 15,
-          }}
-        >
+        <View style={styles.buttonsWrapper}>
           <Button
             success
-            style={{
-              marginVertical: 15,
-              marginHorizontal: 30,
-              justifyContent: "center",
-            }}
+            style={styles.button}
             onPress={() => this.submitAnswer(true)}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>I knew that</Text>
+            <Text style={styles.buttonText}>I knew that</Text>
           </Button>
           <Button
             danger
-            style={{
-              marginVertical: 15,
-              marginHorizontal: 30,
-              justifyContent: "center",
-            }}
+            style={styles.button}
             onPress={() => this.submitAnswer(false)}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>Got it wrong</Text>
+            <Text style={styles.buttonText}>Got it wrong</Text>
           </Button>
         </View>
       </View>

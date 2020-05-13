@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { handleAddCardToDeck } from "../actions/decks";
 import {
@@ -41,6 +41,11 @@ class AddNewCard extends Component {
   };
 
   render() {
+    const styles = StyleSheet.create({
+      button: { margin: 30, justifyContent: "center" },
+      buttonText: { color: "white", fontSize: 18 },
+    });
+
     return (
       <Container>
         <Content>
@@ -63,10 +68,10 @@ class AddNewCard extends Component {
           <Button
             primary
             disabled={!this.state.question && !this.state.answer}
-            style={{ margin: 30, justifyContent: "center" }}
+            style={styles.button}
             onPress={this.handlePress}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>Create Card</Text>
+            <Text style={styles.buttonText}>Create Card</Text>
           </Button>
         </Content>
       </Container>

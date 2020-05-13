@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Alert, Platform } from "react-native";
+import { Text, View, Alert, Platform, StyleSheet } from "react-native";
 import { Button, Content } from "native-base";
 import { connect } from "react-redux";
 
@@ -33,36 +33,42 @@ const Deck = (props) => {
     );
   };
 
+  const styles = StyleSheet.create({
+    view: { flex: 1 },
+    content: { padding: 15 },
+    deckTitle: { fontSize: 40, textAlign: "center" },
+    cardCount: {
+      fontSize: 16,
+      textAlign: "center",
+      color: "grey",
+      marginTop: 5,
+    },
+    buttonsWrapper: {
+      justifyContent: "flex-end",
+      maxHeight: 230,
+      marginBottom: 15,
+    },
+    button: {
+      marginHorizontal: 30,
+      marginVertical: 15,
+      justifyContent: "center",
+    },
+    buttonText: { color: "white", fontSize: 18 },
+  });
+
   return (
-    <View style={{ flex: 1 }}>
-      <Content style={{ padding: 15 }}>
-        <Text style={{ fontSize: 40, textAlign: "center" }}>{deck.title}</Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: "center",
-            color: "grey",
-            marginTop: 5,
-          }}
-        >
+    <View style={styles.view}>
+      <Content style={styles.content}>
+        <Text style={styles.deckTitle}>{deck.title}</Text>
+        <Text style={styles.cardCount}>
           {numberOfCards} {numberOfCards === 1 ? "Card" : "Cards"}
         </Text>
       </Content>
-      <View
-        style={{
-          justifyContent: "flex-end",
-          maxHeight: 230,
-          marginBottom: 15,
-        }}
-      >
+      <View style={styles.buttonsWrapper}>
         <Button
           success
           disabled={!deck.questions.length}
-          style={{
-            marginHorizontal: 30,
-            marginVertical: 15,
-            justifyContent: "center",
-          }}
+          style={styles.button}
           onPress={() =>
             navigation.navigate("QuizScreen", {
               deckId,
@@ -70,33 +76,25 @@ const Deck = (props) => {
             })
           }
         >
-          <Text style={{ color: "white", fontSize: 18 }}>Start Quiz</Text>
+          <Text style={styles.buttonText}>Start Quiz</Text>
         </Button>
         <Button
           info
-          style={{
-            marginHorizontal: 30,
-            marginVertical: 15,
-            justifyContent: "center",
-          }}
+          style={styles.button}
           onPress={() =>
             navigation.navigate("AddNewCardScreen", {
               deckId,
             })
           }
         >
-          <Text style={{ color: "white", fontSize: 18 }}>Add Card</Text>
+          <Text style={styles.buttonText}>Add Card</Text>
         </Button>
         <Button
           danger
-          style={{
-            marginHorizontal: 30,
-            marginVertical: 15,
-            justifyContent: "center",
-          }}
+          style={styles.button}
           onPress={Platform.OS === "web" ? deleteDeck : confirmDelete}
         >
-          <Text style={{ color: "white", fontSize: 18 }}>Delete Deck</Text>
+          <Text style={styles.buttonText}>Delete Deck</Text>
         </Button>
       </View>
     </View>

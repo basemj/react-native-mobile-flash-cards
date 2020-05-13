@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, Platform } from "react-native";
+import { Text, Platform, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import {
   Container,
@@ -37,18 +37,20 @@ class AddNewDeck extends Component {
   };
 
   render() {
+    const styles = StyleSheet.create({
+      headerText: {
+        fontSize: 20,
+        color: Platform.OS === "ios" ? "#007aff" : "white",
+      },
+      button: { margin: 30, justifyContent: "center" },
+      buttonText: { color: "white", fontSize: 18 },
+    });
+
     return (
       <Container>
         <Header>
           <Body>
-            <Text
-              style={{
-                fontSize: 20,
-                color: Platform.OS === "ios" ? "#007aff" : "white",
-              }}
-            >
-              Add New Deck
-            </Text>
+            <Text style={styles.headerText}>Add New Deck</Text>
           </Body>
         </Header>
         <Content>
@@ -64,10 +66,10 @@ class AddNewDeck extends Component {
           <Button
             primary
             disabled={!this.state.title}
-            style={{ margin: 30, justifyContent: "center" }}
+            style={styles.button}
             onPress={this.handlePress}
           >
-            <Text style={{ color: "white", fontSize: 18 }}>Create Deck</Text>
+            <Text style={styles.buttonText}>Create Deck</Text>
           </Button>
         </Content>
       </Container>

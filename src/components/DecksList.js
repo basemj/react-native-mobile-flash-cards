@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleGetAllDecks } from "../actions/decks";
-import { Text, Platform } from "react-native";
+import { Text, Platform, StyleSheet } from "react-native";
 import { Content, List, Body, Container, Header } from "native-base";
 import { setLocalNotification } from "../helpers/notifications";
 
@@ -16,18 +16,25 @@ class DecksList extends Component {
 
   render() {
     const { decksArray, navigation } = this.props;
+
+    const styles = StyleSheet.create({
+      headerText: {
+        fontSize: 20,
+        color: Platform.OS === "ios" ? "#007aff" : "white",
+      },
+      noDecksText: {
+        fontSize: 16,
+        textAlign: "center",
+        color: "grey",
+        marginTop: 25,
+      },
+    });
+
     return (
       <Container>
         <Header>
           <Body>
-            <Text
-              style={{
-                fontSize: 20,
-                color: Platform.OS === "ios" ? "#007aff" : "white",
-              }}
-            >
-              Decks
-            </Text>
+            <Text style={styles.headerText}>Decks</Text>
           </Body>
         </Header>
         <Content>
@@ -42,16 +49,7 @@ class DecksList extends Component {
               ))}
             </List>
           ) : (
-            <Text
-              style={{
-                fontSize: 16,
-                textAlign: "center",
-                color: "grey",
-                marginTop: 25,
-              }}
-            >
-              No decks to display
-            </Text>
+            <Text style={styles.noDecksText}>No decks to display</Text>
           )}
         </Content>
       </Container>
