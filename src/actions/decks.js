@@ -27,8 +27,7 @@ const handleAddCardToDeck = (deckId, questionSet) => {
 const addCardToDeck = (deckId, questionSet) => {
   return {
     type: ADD_CARD_TO_DECK,
-    deckId,
-    questionSet,
+    payload: { deckId, questionSet },
   };
 };
 
@@ -43,7 +42,7 @@ const handleAddDeck = (title) => {
 const addDeck = (title) => {
   return {
     type: ADD_DECK,
-    title,
+    payload: title,
   };
 };
 
@@ -62,7 +61,7 @@ const handleDeleteDeck = (deckId) => {
 const deleteDeck = (deckId) => {
   return {
     type: DELETE_DECK,
-    deckId,
+    payload: deckId,
   };
 };
 
@@ -79,7 +78,7 @@ const handleGetAllDecks = () => {
 const getAllDecks = (decks) => {
   return {
     type: GET_ALL_DECKS,
-    decks,
+    payload: decks,
   };
 };
 
@@ -94,7 +93,7 @@ const handleGetDeck = (deckId) => {
 const getDeck = (deckId) => {
   return {
     type: GET_DECK,
-    deckId,
+    payload: deckId,
   };
 };
 

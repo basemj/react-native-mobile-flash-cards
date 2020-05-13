@@ -5,10 +5,10 @@ import {
   GET_ALL_DECKS,
 } from "../actions/decks";
 
-const decks = (state = {}, action) => {
-  switch (action.type) {
+const decks = (state = {}, { type, payload }) => {
+  switch (type) {
     case ADD_CARD_TO_DECK: {
-      const { deckId, questionSet } = action;
+      const { deckId, questionSet } = payload;
 
       if (state[deckId]) {
         const updatedDeck = {
@@ -24,11 +24,10 @@ const decks = (state = {}, action) => {
     }
 
     case ADD_DECK: {
-      const { title } = action;
-      const id = title.trim();
+      const id = payload.trim();
       const newDeck = {
         id,
-        title,
+        title: payload,
         questions: [],
       };
 
@@ -39,11 +38,10 @@ const decks = (state = {}, action) => {
     }
 
     case DELETE_DECK: {
-      const { deckId } = action;
       const newState = { ...state };
 
-      if (newState[deckId]) {
-        delete newState[deckId];
+      if (newState[payload]) {
+        delete newState[payload];
 
         return newState;
       }
@@ -52,7 +50,7 @@ const decks = (state = {}, action) => {
     case GET_ALL_DECKS: {
       return {
         ...state,
-        ...action.decks,
+        ...payload,
       };
     }
 
