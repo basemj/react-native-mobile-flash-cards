@@ -13,6 +13,36 @@ const initialState = {
   showAnswer: false,
 };
 
+const styles = StyleSheet.create({
+  view: { flex: 1 },
+  content: { padding: 15 },
+  topSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 15,
+  },
+  info: {
+    color: "grey",
+    marginTop: 5,
+  },
+  answerToggle: {
+    color: Platform.OS === "ios" ? "#007aff" : "blue",
+    marginTop: 5,
+  },
+  questionText: { fontSize: 40, textAlign: "center" },
+  buttonsWrapper: {
+    justifyContent: "flex-end",
+    maxHeight: 160,
+    marginBottom: 15,
+  },
+  button: {
+    marginVertical: 15,
+    marginHorizontal: 30,
+    justifyContent: "center",
+  },
+  buttonText: { color: "white", fontSize: 18 },
+});
+
 class Quiz extends Component {
   state = initialState;
 
@@ -51,36 +81,6 @@ class Quiz extends Component {
     const { questions } = this.props;
     const numberOfQuestions = (questions && questions.length) || 0;
     const { activeCard, showAnswer } = this.state;
-
-    const styles = StyleSheet.create({
-      view: { flex: 1 },
-      content: { padding: 15 },
-      topSection: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 15,
-      },
-      info: {
-        color: "grey",
-        marginTop: 5,
-      },
-      answerToggle: {
-        color: Platform.OS === "ios" ? "#007aff" : "blue",
-        marginTop: 5,
-      },
-      questionText: { fontSize: 40, textAlign: "center" },
-      buttonsWrapper: {
-        justifyContent: "flex-end",
-        maxHeight: 160,
-        marginBottom: 15,
-      },
-      button: {
-        marginVertical: 15,
-        marginHorizontal: 30,
-        justifyContent: "center",
-      },
-      buttonText: { color: "white", fontSize: 18 },
-    });
 
     return (
       <View style={styles.view}>

@@ -15,6 +15,15 @@ import {
 
 import { handleAddDeck } from "../actions/decks";
 
+const styles = StyleSheet.create({
+  headerText: {
+    fontSize: 20,
+    color: Platform.OS === "ios" ? "#007aff" : "white",
+  },
+  button: { margin: 30, justifyContent: "center" },
+  buttonText: { color: "white", fontSize: 18 },
+});
+
 class AddNewDeck extends Component {
   state = {
     title: "",
@@ -37,15 +46,6 @@ class AddNewDeck extends Component {
   };
 
   render() {
-    const styles = StyleSheet.create({
-      headerText: {
-        fontSize: 20,
-        color: Platform.OS === "ios" ? "#007aff" : "white",
-      },
-      button: { margin: 30, justifyContent: "center" },
-      buttonText: { color: "white", fontSize: 18 },
-    });
-
     return (
       <Container>
         <Header>

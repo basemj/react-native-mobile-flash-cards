@@ -5,6 +5,29 @@ import { connect } from "react-redux";
 
 import { handleDeleteDeck } from "../actions/decks";
 
+const styles = StyleSheet.create({
+  view: { flex: 1 },
+  content: { padding: 15 },
+  deckTitle: { fontSize: 40, textAlign: "center" },
+  cardCount: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "grey",
+    marginTop: 5,
+  },
+  buttonsWrapper: {
+    justifyContent: "flex-end",
+    maxHeight: 230,
+    marginBottom: 15,
+  },
+  button: {
+    marginHorizontal: 30,
+    marginVertical: 15,
+    justifyContent: "center",
+  },
+  buttonText: { color: "white", fontSize: 18 },
+});
+
 const Deck = (props) => {
   const { deckId, deck, navigation, dispatch } = props;
 
@@ -32,29 +55,6 @@ const Deck = (props) => {
       ]
     );
   };
-
-  const styles = StyleSheet.create({
-    view: { flex: 1 },
-    content: { padding: 15 },
-    deckTitle: { fontSize: 40, textAlign: "center" },
-    cardCount: {
-      fontSize: 16,
-      textAlign: "center",
-      color: "grey",
-      marginTop: 5,
-    },
-    buttonsWrapper: {
-      justifyContent: "flex-end",
-      maxHeight: 230,
-      marginBottom: 15,
-    },
-    button: {
-      marginHorizontal: 30,
-      marginVertical: 15,
-      justifyContent: "center",
-    },
-    buttonText: { color: "white", fontSize: 18 },
-  });
 
   return (
     <View style={styles.view}>

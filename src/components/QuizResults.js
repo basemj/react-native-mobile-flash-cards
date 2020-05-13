@@ -2,32 +2,32 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Content, Button } from "native-base";
 
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+  },
+  content: { padding: 15 },
+  smallText: {
+    marginTop: 5,
+    textAlign: "center",
+  },
+  score: { fontSize: 50, textAlign: "center" },
+  buttonsWrapper: {
+    justifyContent: "flex-end",
+    maxHeight: 160,
+    marginBottom: 15,
+  },
+  button: {
+    marginVertical: 15,
+    marginHorizontal: 30,
+    justifyContent: "center",
+  },
+  buttonText: { color: "white", fontSize: 18 },
+});
+
 const QuizResults = (props) => {
   const { score, numberOfQuestions } = props.params;
   const { navigation } = props;
-
-  const styles = StyleSheet.create({
-    view: {
-      flex: 1,
-    },
-    content: { padding: 15 },
-    smallText: {
-      marginTop: 5,
-      textAlign: "center",
-    },
-    score: { fontSize: 50, textAlign: "center" },
-    buttonsWrapper: {
-      justifyContent: "flex-end",
-      maxHeight: 160,
-      marginBottom: 15,
-    },
-    button: {
-      marginVertical: 15,
-      marginHorizontal: 30,
-      justifyContent: "center",
-    },
-    buttonText: { color: "white", fontSize: 18 },
-  });
 
   return (
     <View style={styles.view}>

@@ -3,14 +3,14 @@ import { Text, StyleSheet } from "react-native";
 import { ListItem, Body, Right, Icon } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+const styles = StyleSheet.create({
+  title: { fontSize: 18 },
+  cardCount: { fontSize: 12, color: "grey", marginTop: 5 },
+});
+
 const DeckListItem = (props) => {
   const { deck, navigation } = props;
   const numberOfCards = deck.questions.length || 0;
-
-  const styles = StyleSheet.create({
-    title: { fontSize: 18 },
-    cardCount: { fontSize: 12, color: "grey", marginTop: 5 },
-  });
 
   return (
     <TouchableOpacity

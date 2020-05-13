@@ -7,6 +7,19 @@ import { setLocalNotification } from "../helpers/notifications";
 
 import DeckListItem from "./DeckListItem";
 
+const styles = StyleSheet.create({
+  headerText: {
+    fontSize: 20,
+    color: Platform.OS === "ios" ? "#007aff" : "white",
+  },
+  noDecksText: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "grey",
+    marginTop: 25,
+  },
+});
+
 class DecksList extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -16,19 +29,6 @@ class DecksList extends Component {
 
   render() {
     const { decksArray, navigation } = this.props;
-
-    const styles = StyleSheet.create({
-      headerText: {
-        fontSize: 20,
-        color: Platform.OS === "ios" ? "#007aff" : "white",
-      },
-      noDecksText: {
-        fontSize: 16,
-        textAlign: "center",
-        color: "grey",
-        marginTop: 25,
-      },
-    });
 
     return (
       <Container>

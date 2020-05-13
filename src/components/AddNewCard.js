@@ -12,6 +12,11 @@ import {
   Button,
 } from "native-base";
 
+const styles = StyleSheet.create({
+  button: { margin: 30, justifyContent: "center" },
+  buttonText: { color: "white", fontSize: 18 },
+});
+
 class AddNewCard extends Component {
   state = {
     question: "",
@@ -41,11 +46,6 @@ class AddNewCard extends Component {
   };
 
   render() {
-    const styles = StyleSheet.create({
-      button: { margin: 30, justifyContent: "center" },
-      buttonText: { color: "white", fontSize: 18 },
-    });
-
     return (
       <Container>
         <Content>
