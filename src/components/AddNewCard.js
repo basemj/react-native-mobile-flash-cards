@@ -67,7 +67,7 @@ class AddNewCard extends Component {
           </Form>
           <Button
             primary
-            disabled={!this.state.question && !this.state.answer}
+            disabled={!this.state.question || !this.state.answer}
             style={styles.button}
             onPress={this.handlePress}
           >
