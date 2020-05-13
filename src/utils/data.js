@@ -16,24 +16,30 @@ const _addCardToDeck = async (deckId, questionSet) => {
       [deckId]: updatedDeck,
     };
 
-    await AsyncStorage.setItem(DECK_SORAGE_KEY, updatedDecks);
+    return await AsyncStorage.setItem(
+      DECK_SORAGE_KEY,
+      JSON.stringify(updatedDecks)
+    );
   } else {
     throw "You cannot add to a deck that does not exist.";
   }
 };
 
 const _addDeck = async (title) => {
+  const decks = await _getAllDecks();
+
   const id = title.trim();
-  const newDeck = {
-    id,
-    title,
-    questions: [],
+
+  const newDecks = {
+    ...decks,
+    [id]: {
+      id,
+      title,
+      questions: [],
+    },
   };
 
-  return await AsyncStorage.mergeItem(
-    DECK_SORAGE_KEY,
-    JSON.stringify({ [id]: newDeck })
-  );
+  return await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(newDecks));
 };
 
 const _deleteDeck = async (deckId) => {
@@ -42,7 +48,7 @@ const _deleteDeck = async (deckId) => {
   if (decks[deckId]) {
     delete decks[deckId];
 
-    await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(decks));
+    return await AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify(decks));
   } else {
     throw "Cannot find deck to delete.";
   }
@@ -54,6 +60,7 @@ const _getAllDecks = async () => {
       if (decks !== null) {
         return JSON.parse(decks);
       } else {
+        AsyncStorage.setItem(DECK_SORAGE_KEY, JSON.stringify({}));
         return {};
       }
     })
