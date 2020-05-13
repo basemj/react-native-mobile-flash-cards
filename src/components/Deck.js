@@ -34,8 +34,8 @@ const Deck = (props) => {
   };
 
   return (
-    <Content>
-      <View style={{ marginVertical: 30 }}>
+    <View style={{ flex: 1 }}>
+      <Content style={{ padding: 15 }}>
         <Text style={{ fontSize: 40, textAlign: "center" }}>{deck.title}</Text>
         <Text
           style={{
@@ -47,12 +47,22 @@ const Deck = (props) => {
         >
           {numberOfCards} {numberOfCards === 1 ? "Card" : "Cards"}
         </Text>
-      </View>
-      <View>
+      </Content>
+      <View
+        style={{
+          justifyContent: "flex-end",
+          maxHeight: 230,
+          marginBottom: 15,
+        }}
+      >
         <Button
           success
           disabled={!deck.questions.length}
-          style={{ margin: 30, justifyContent: "center" }}
+          style={{
+            marginHorizontal: 30,
+            marginVertical: 15,
+            justifyContent: "center",
+          }}
           onPress={() =>
             navigation.navigate("QuizScreen", {
               deckId,
@@ -64,7 +74,11 @@ const Deck = (props) => {
         </Button>
         <Button
           info
-          style={{ margin: 30, justifyContent: "center" }}
+          style={{
+            marginHorizontal: 30,
+            marginVertical: 15,
+            justifyContent: "center",
+          }}
           onPress={() =>
             navigation.navigate("AddNewCardScreen", {
               deckId,
@@ -77,7 +91,7 @@ const Deck = (props) => {
           danger
           style={{
             marginHorizontal: 30,
-            marginBottom: 30,
+            marginVertical: 15,
             justifyContent: "center",
           }}
           onPress={Platform.OS === "web" ? deleteDeck : confirmDelete}
@@ -85,7 +99,7 @@ const Deck = (props) => {
           <Text style={{ color: "white", fontSize: 18 }}>Delete Deck</Text>
         </Button>
       </View>
-    </Content>
+    </View>
   );
 };
 
